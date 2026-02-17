@@ -134,14 +134,16 @@ The directory is created automatically if it doesn't exist. Running the skill mu
 
 ## Example Output
 
+**Basic report (without --detailed):**
+
 ```markdown
 # Content Distribution Report
 *Generated: February 16, 2026*
 
-**Total Files Analyzed:** 42
+**Total Files Analyzed:** 44
 **Total with URL field:** 42
-**Total without URL field:** 0
-**Unique Path Prefixes:** 12
+**Total without URL field:** 2
+**Unique Path Prefixes:** 11
 
 ---
 
@@ -149,13 +151,42 @@ The directory is created automatically if it doesn't exist. Running the skill mu
 
 | Path | Count | Percentage |
 |------|-------|------------|
-| `/podcast` | 12 | 28.6% |
-| `/questions` | 5 | 11.9% |
-| `/articles` | 8 | 19.0% |
+| **`/podcast`** | **12** | **27.3%** |
+| **`/episodes`** | **7** | **15.9%** |
+| **`/questions`** | **5** | **11.4%** |
+| `/creativity` | 5 | 11.4% |
+| `/connection` | 5 | 11.4% |
+| `/career` | 2 | 4.5% |
+| `(root)` | 2 | 4.5% |
+| `(no-url)` | 2 | 4.5% |
+| `/history` | 1 | 2.3% |
 ...
 
-**TOTAL:** 42 files across 12 path prefixes
+**TOTAL:** 44 files across 11 path prefixes
+
+---
+
+## Content Insights
+
+### Strengths
+- Clear primary focus on podcasting (43% of content)
+- Balanced supporting content across multiple themes
+- Diverse topic coverage for organic search
+
+### Opportunities
+- Single-article categories could be expanded
+- Missing URL fields on some pillar pages
+- Underserved themes with growth potential
+
+### Content Distribution Balance
+- Podcast/Episodes: 43.2%
+- Supporting articles: 52.3%
+- Utility pages: 4.5%
 ```
+
+**With --detailed flag:**
+
+Adds a "## Files by Category" section listing all files grouped by path prefix.
 
 ## Use Cases
 

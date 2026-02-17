@@ -84,31 +84,74 @@ Create a markdown report with:
 **Total with URL field:** [N]
 **Total without URL field:** [N]
 **Unique Path Prefixes:** [N]
-```
 
-**Distribution Table:**
-```markdown
+---
+
 ## Content Distribution by URL Path
 
-| Path | Count | Percentage | Files |
-|------|-------|------------|-------|
-| `/podcast` | 12 | 28.6% | [links if --detailed] |
-| `/questions` | 5 | 11.9% | [links if --detailed] |
-| ... | ... | ... | ... |
+| Path | Count | Percentage |
+|------|-------|------------|
+| `/podcast` | 12 | 27.3% |
+| `/questions` | 5 | 11.4% |
+| ... | ... | ... |
+
+**TOTAL:** [N] files across [N] path prefixes
 ```
 
-Sort table by count (descending), then alphabetically by path.
+**Important formatting rules:**
+- Bold the top 3 categories with highest counts using `**`
+- Sort table by count (descending), then alphabetically by path
+- Use `(root)` for single-segment URLs
+- Use `(no-url)` for files without URL fields
+- Add horizontal rule (`---`) after the table
+
+**After the distribution table, add:**
+
+```markdown
+---
+
+## Content Insights
+
+### Strengths
+[Brief bullet points about what the distribution reveals]
+
+### Opportunities
+[Brief bullet points about gaps or areas to expand]
+
+### Content Distribution Balance
+[High-level breakdown of content themes]
+```
 
 **If `--detailed` flag:**
 
-For each path category, list all files:
+Add a section listing all files per category:
 ```markdown
-### `/podcast` (12 files)
+---
 
-- /podcast/best-interview-podcasts - `content/articles/best-interview-podcasts.md`
-- /podcast/conversational-podcasts-guide - `content/articles/conversational-podcasts-guide.md`
-- ...
+## Files by Category
+
+### `/podcast` (12 files)
+1. /podcast/best-interview-podcasts - `content/articles/best-interview-podcasts.md`
+2. /podcast/conversational-podcasts-guide - `content/articles/conversational-podcasts-guide.md`
+...
 ```
+
+**DO NOT include:**
+- ❌ "## Analysis Summary" section
+- ❌ "### Top Content Categories" detailed commentary
+- ❌ "### Secondary Themes" section
+- ❌ "### Emerging Categories" section
+- ❌ "## Notes" section at the end
+
+**DO include:**
+- ✅ Title and timestamp
+- ✅ Summary statistics (counts)
+- ✅ Distribution table with percentages
+- ✅ Total count summary
+- ✅ "## Content Insights" section (Strengths, Opportunities, Balance)
+- ✅ Files by category (if --detailed flag used)
+
+Keep insights concise and actionable.
 
 ### 6. Save Report to File
 
@@ -139,14 +182,16 @@ For each path category, list all files:
 
 ## Example Output
 
+### Basic Output (without --detailed flag)
+
 ```markdown
 # Content Distribution Report
 *Generated: February 16, 2026*
 
-**Total Files Analyzed:** 42
+**Total Files Analyzed:** 44
 **Total with URL field:** 42
-**Total without URL field:** 0
-**Unique Path Prefixes:** 12
+**Total without URL field:** 2
+**Unique Path Prefixes:** 11
 
 ---
 
@@ -154,21 +199,44 @@ For each path category, list all files:
 
 | Path | Count | Percentage |
 |------|-------|------------|
-| **`/podcast`** | **12** | **28.6%** |
-| **`/episodes`** | **7** | **16.7%** |
-| **`/questions`** | **5** | **11.9%** |
-| `/creativity` | 5 | 11.9% |
-| `/connection` | 5 | 11.9% |
-| `/career` | 2 | 4.8% |
-| `/web-design` | 1 | 2.4% |
-| `/tech` | 1 | 2.4% |
-| `/history` | 1 | 2.4% |
-| `/communication` | 1 | 2.4% |
-| `/subscribe` | 1 | 2.4% |
-| `/about` | 1 | 2.4% |
+| **`/podcast`** | **12** | **27.3%** |
+| **`/episodes`** | **7** | **15.9%** |
+| **`/questions`** | **5** | **11.4%** |
+| **`/creativity`** | **5** | **11.4%** |
+| **`/connection`** | **5** | **11.4%** |
+| `/career` | 2 | 4.5% |
+| `(root)` | 2 | 4.5% |
+| `(no-url)` | 2 | 4.5% |
+| `/history` | 1 | 2.3% |
+| `/tech` | 1 | 2.3% |
+| `/communication` | 1 | 2.3% |
+| `/web-design` | 1 | 2.3% |
 
-**TOTAL:** 42 files across 12 path prefixes
+**TOTAL:** 44 files across 11 path prefixes
+
+---
+
+## Content Insights
+
+### Strengths
+1. **Clear primary focus**: Over 43% of content directly relates to podcasting
+2. **Balanced supporting content**: Multiple themes at ~11% each provide diversity
+3. **Diverse topic coverage**: 11 distinct pillars for organic search
+
+### Opportunities
+1. **Single-article categories**: History, tech, communication, web-design could be expanded
+2. **Missing URL fields**: Two pillar pages need URLs added to front matter
+3. **Career content**: Only 4.5% despite strong connection to podcast themes
+
+### Content Distribution Balance
+- **Podcast/Episodes combined**: 43.2% (19 files)
+- **Supporting articles**: 52.3% (23 files)
+- **Utility/Missing**: 4.5% (2 files)
 ```
+
+### Detailed Output (with --detailed flag)
+
+Adds "## Files by Category" section after Content Insights with numbered file listings per category.
 
 ## Implementation Guidelines
 
