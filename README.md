@@ -4,22 +4,81 @@ A Claude Code skill that analyzes your content structure by URL path and generat
 
 ## Installation
 
-### Project-Specific Installation (Recommended)
+### Option 1: Project Submodule (Recommended)
+
+Add this skill as a git submodule to your project. This keeps the skill updated across projects and makes it easy to pull updates.
 
 ```bash
-cd your-project-directory
-mkdir -p .claude/skills
-cd .claude/skills
-git clone <this-repo> url-distribution
+# Navigate to your project
+cd /path/to/your/project
+
+# Add the skill as a submodule
+git submodule add git@github.com:k3nd477/url-distribution.git .claude/skills/url-distribution
+
+# Commit the submodule addition
+git add .gitmodules .claude/skills/url-distribution
+git commit -m "Add url-distribution skill as submodule"
 ```
 
-### Personal Installation (Global)
+**Updating the skill:**
+```bash
+# Update to latest version
+git submodule update --remote .claude/skills/url-distribution
+
+# Commit the update
+git add .claude/skills/url-distribution
+git commit -m "Update url-distribution skill to latest version"
+```
+
+**Cloning a project with this submodule:**
+```bash
+# Clone with submodules
+git clone --recurse-submodules <your-project-repo>
+
+# Or if already cloned
+git submodule init
+git submodule update
+```
+
+### Option 2: Personal Installation (Global)
+
+Install globally for use across all your projects without submodules:
 
 ```bash
-mkdir -p ~/.claude/skills
+# Clone to personal skills directory
 cd ~/.claude/skills
-git clone <this-repo> url-distribution
+git clone git@github.com:k3nd477/url-distribution.git url-distribution
+
+# Update when needed
+cd ~/.claude/skills/url-distribution
+git pull origin main
 ```
+
+This makes the skill available globally, but you'll need to update it manually on each machine.
+
+## File Structure
+
+**After installation and usage, your project will look like:**
+
+```
+your-project/
+├── .claude/
+│   └── skills/
+│       └── url-distribution/    # This skill as submodule
+├── .seo-content/                 # Created by the skill
+│   └── url-distribution/
+│       ├── url-distro-2026-02-15.md
+│       ├── url-distro-2026-02-16.md
+│       └── url-distro-2026-02-17.md
+├── content/                      # Your Hugo content directory
+│   ├── articles/
+│   │   └── my-post.md
+│   └── posts/
+│       └── another-post.md
+└── [your other project files]
+```
+
+**Note:** The `.seo-content/` output directory is created in YOUR project root, not in the skill repository.
 
 ## Usage
 
@@ -105,6 +164,48 @@ The directory is created automatically if it doesn't exist. Running the skill mu
 - **Content Gaps:** Identify underserved topic areas
 - **URL Auditing:** See your actual URL structure at a glance
 - **Historical Tracking:** Compare distribution reports over time to track content growth
+
+## Workflow Integration
+
+### Working with seo-strategy skill
+
+This skill complements the `seo-strategy` skill by providing data-driven insights into your current content distribution.
+
+#### Recommended Workflow
+
+**Step 1: Audit Current Distribution** (this skill)
+```bash
+/url-distribution
+```
+Generates: `.seo-content/url-distribution/url-distro-YYYY-MM-DD.md`
+
+**Step 2: Generate Strategy** (seo-strategy skill)
+```bash
+/seo-strategy
+```
+Use the distribution report to inform pillar decisions and identify gaps.
+
+**Step 3: Track Progress** (this skill, periodically)
+```bash
+/url-distribution
+```
+Compare date-stamped reports to see how your content distribution evolves.
+
+#### Skill Relationships
+
+- **This skill (url-distribution)**: Current state analysis (fast, can run frequently)
+- **seo-strategy skill**: Strategic content planning (comprehensive, periodic)
+- **seo-content-drafts skill**: Content creation (generates articles that affect distribution)
+
+All skills share the `.seo-content/` output directory for seamless integration.
+
+#### Independent Usage
+
+You can use this skill independently for:
+- Quick content audits before site migrations
+- URL structure validation
+- Content balance checks
+- Historical trend analysis
 
 ## Requirements
 
