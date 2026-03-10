@@ -2,6 +2,7 @@
 name: url-distribution
 description: Analyze content distribution by URL path from front matter
 version: 1.0.0
+model: claude-haiku-4-5-20251001
 ---
 
 # URL Distribution Analyzer
